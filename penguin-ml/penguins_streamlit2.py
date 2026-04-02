@@ -76,7 +76,8 @@ st.write(
     used in this prediction are ranked by 
     relative importance below."""
 )
-st.image(base_path, 'feature_importance.png')
+feature_path = os.path.join(base_path, "feature_importance.png")
+st.image(feature_path)
 st.write(
     """Below are the histograms for each 
     continuous variable separated by penguin 
