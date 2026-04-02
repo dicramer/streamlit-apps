@@ -6,6 +6,10 @@ from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import pickle
+import os
+
+# Den Pfad zum aktuellen Ordner des Skripts ermitteln
+base_path = os.path.dirname(__file__)
 
 st.title('Penguin Classifier')
 st.write("This app uses 6 inputs to predict the species of penguin using"
@@ -14,8 +18,11 @@ st.write("This app uses 6 inputs to predict the species of penguin using"
 penguin_file = st.file_uploader("Upload your own penguin data")
 
 if penguin_file is None:
-    rf_pickle = open("random_forest_penguin.pickle", "rb")
-    map_pickle = open("output_penguin.pickle", "rb")
+    # Pfad relativ zum Skript zusammenbauen
+    rf_path = os.path.join(base_path, "random_forest_penguin.pickle")
+    map_path = os.path.join(base_path, "output_penguin.pickle")
+    rf_pickle = open(rf_path, "rb")
+    map_pickle = open(map_path, "rb")
     rfc = pickle.load(rf_pickle)
     unique_penguin_mapping = pickle.load(map_pickle)
     rf_pickle.close()
